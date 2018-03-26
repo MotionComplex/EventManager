@@ -1,0 +1,32 @@
+@import '~@angular/material/theming';
+@import '~@covalent/core/theming/all-theme';
+@import '~@covalent/markdown/markdown-theme';
+@import '~@covalent/highlight/highlight-theme';
+
+// typography
+$typography: mat-typography-config(
+  $font-family: 'Roboto, monospace',
+  $headline: mat-typography-level(32px, 48px, 700),
+  $body-1: mat-typography-level(16px, 24px, 500)
+);
+
+// mat-core with typography configuration
+@include mat-core($typography);
+
+// app palettes
+$event-app-primary: mat-palette($mat-light-blue);
+$event-app-accent:  mat-palette($mat-amber, A200, A100, A400);
+
+// app warn palettes
+$event-app-warn:    mat-palette($mat-red);
+
+// theme object (a Sass map containing all of the palettes).
+$event-app-theme: mat-light-theme($event-app-primary, $event-app-accent, $event-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($event-app-theme);
+@include covalent-theme($event-app-theme, $typography);
+@include covalent-markdown-theme($event-app-theme);
+@include covalent-highlight-theme();
